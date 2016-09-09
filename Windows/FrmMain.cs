@@ -399,7 +399,10 @@ namespace XCoder
                 //list.Remove(list.Find(delegate(IDataTable p) { return p.Name == "sysconstraints"; }));
                 //list.Remove(list.Find(delegate(IDataTable p) { return p.Name == "syssegments"; }));
                 //list.RemoveAll(delegate(IDataTable p) { return p.Description.Contains("[0E232FF0-B466-"); });
-                list.RemoveAll(dt => dt.Name == "dtproperties" || dt.Name == "sysconstraints" || dt.Name == "syssegments" || dt.Description.Contains("[0E232FF0-B466-"));
+                list.RemoveAll(dt => dt.Name == "dtproperties" || 
+                        dt.Name == "sysconstraints" || 
+                        dt.Name == "syssegments" || 
+                        !dt.Description.IsNullOrEmpty() && dt.Description.Contains("[0E232FF0-B466-"));
             }
 
             // 设置前最好清空，否则多次设置数据源会用第一次绑定控件，然后实际数据是最后一次
